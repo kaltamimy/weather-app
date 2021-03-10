@@ -64,13 +64,61 @@ export default class Iphone extends Component {
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
-					<div>{this.state.temper[0]}</div>
-				</div>
+					<div>
+					<table>
+                            <tr>
+                                <th scope = "col">Mon</th>
+                                <th scope = "col">Tue</th>
+                                <th scope = "col">Wed</th>
+                                <th scope = "col">Thu</th>
+                                <th scope = "col">Fri</th>
+                                <th scope = "col">Sat</th>
+                                <th scope = "col">Sun</th>
+                            </tr>
+                            <tr>
+                                <td>{this.state.temper[0]}</td>
+                                <td>{this.state.temper[1]}</td>
+                                <td>{this.state.temper[2]}</td>
+                                <td>{this.state.temper[3]}</td>
+                                <td>{this.state.temper[4]}</td>
+                                <td>{this.state.temper[5]}</td>
+                                <td>{this.state.temper[6]}</td>
+                            </tr>
+                            <tr>
+                                <td>{this.state.cloudiness[0]}</td>
+                                <td>{this.state.cloudiness[1]}</td>
+                                <td>{this.state.cloudiness[2]}</td>
+                                <td>{this.state.cloudiness[3]}</td>
+                                <td>{this.state.cloudiness[4]}</td>
+                                <td>{this.state.cloudiness[5]}</td>
+                                <td>{this.state.cloudiness[6]}</td>
+                            </tr>
+							<tr>
+                                <td>{this.state.windSp[0]}</td>
+                                <td>{this.state.windSp[1]}</td>
+                                <td>{this.state.windSp[2]}</td>
+                                <td>{this.state.windSp[3]}</td>
+                                <td>{this.state.windSp[4]}</td>
+                                <td>{this.state.windSp[5]}</td>
+                                <td>{this.state.windSp[6]}</td>
+                            </tr>
+							<tr>
+                                <td>{this.state.hum[0]}</td>
+                                <td>{this.state.hum[1]}</td>
+                                <td>{this.state.hum[2]}</td>
+                                <td>{this.state.hum[3]}</td>
+                                <td>{this.state.hum[4]}</td>
+                                <td>{this.state.hum[5]}</td>
+                                <td>{this.state.hum[6]}</td>
+                            </tr>
+                    </table>
+					</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }> 
 					{ this.state.display ? <Button class={ style_iphone.button } displayMessage={"Home"}clickFunction={ this.fetchWeatherData }/ > : null }
 					
 				</div>
+			</div>
 			</div>
 		);
 	}

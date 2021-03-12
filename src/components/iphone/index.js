@@ -22,6 +22,7 @@ export default class Iphone extends Component {
 		this.setState({cloudiness:["NULL","NULL","NULL","NULL","NULL","NULL","NULL"]});
 		this.setState({windSp:["NULL","NULL","NULL","NULL","NULL","NULL","NULL"]});
 		this.setState({hum:["NULL","NULL","NULL","NULL","NULL","NULL","NULL"]});
+		this.setState({iconFutureArr:["NULL","NULL","NULL","NULL","NULL","NULL","NULL"]});
 	}
 
 	// a call to fetch weather data via wunderground
@@ -41,7 +42,7 @@ export default class Iphone extends Component {
 
 	fetchWeatherDataFuture = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly&appid=985762a7b74ffd5299099774c9686a4b";
+		var url = "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly&units=metric&appid=985762a7b74ffd5299099774c9686a4b";
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -67,6 +68,7 @@ export default class Iphone extends Component {
 					<div>
 					<table>
                             <tr>
+								<th scope = "col"></th>
                                 <th scope = "col">Mon</th>
                                 <th scope = "col">Tue</th>
                                 <th scope = "col">Wed</th>
@@ -76,6 +78,7 @@ export default class Iphone extends Component {
                                 <th scope = "col">Sun</th>
                             </tr>
                             <tr>
+								<td></td>
                                 <td>{this.state.temper[0]}</td>
                                 <td>{this.state.temper[1]}</td>
                                 <td>{this.state.temper[2]}</td>
@@ -84,7 +87,18 @@ export default class Iphone extends Component {
                                 <td>{this.state.temper[5]}</td>
                                 <td>{this.state.temper[6]}</td>
                             </tr>
+							<tr>
+								<td></td>
+								<td><img src={this.state.iconFutureArr[0]}/></td>
+								<td><img src={this.state.iconFutureArr[1]}/></td>
+								<td><img src={this.state.iconFutureArr[2]}/></td>
+								<td><img src={this.state.iconFutureArr[3]}/></td>
+								<td><img src={this.state.iconFutureArr[4]}/></td>
+								<td><img src={this.state.iconFutureArr[5]}/></td>
+								<td><img src={this.state.iconFutureArr[6]}/></td>
+							</tr>
                             <tr>
+								<td><p>Clouds</p></td>
                                 <td>{this.state.cloudiness[0]}</td>
                                 <td>{this.state.cloudiness[1]}</td>
                                 <td>{this.state.cloudiness[2]}</td>
@@ -94,6 +108,7 @@ export default class Iphone extends Component {
                                 <td>{this.state.cloudiness[6]}</td>
                             </tr>
 							<tr>
+								<td>Wind Speed</td>
                                 <td>{this.state.windSp[0]}</td>
                                 <td>{this.state.windSp[1]}</td>
                                 <td>{this.state.windSp[2]}</td>
@@ -103,6 +118,7 @@ export default class Iphone extends Component {
                                 <td>{this.state.windSp[6]}</td>
                             </tr>
 							<tr>
+								<td>Humidity</td>
                                 <td>{this.state.hum[0]}</td>
                                 <td>{this.state.hum[1]}</td>
                                 <td>{this.state.hum[2]}</td>
@@ -144,12 +160,16 @@ export default class Iphone extends Component {
 		var cloudy=[];
 		var windSpeed=[];
 		var humid=[];
+		var iconFuture=[];
+		var iconFutureLink=[];
 
 		for(i=0; i<7; i++){
 			temperature.push(parsed_json['daily'][i]['temp']['day']);
 			cloudy.push(parsed_json['daily'][i]['clouds']);
 			windSpeed.push(parsed_json['daily'][i]['wind_speed']);
 			humid.push(parsed_json['daily'][i]['humidity']);
+			iconFuture.push(parsed_json['daily'][i]['weather']['0']['icon']);
+			iconFutureLink.push("http://openweathermap.org/img/wn/"+iconFuture[i]+"@2x.png");
 		}
 		
 
@@ -158,7 +178,8 @@ export default class Iphone extends Component {
 			temper : temperature,
 			cloudiness : cloudy,
 			windSp : windSpeed,
-			hum : humid
+			hum : humid,
+			iconFutureArr : iconFutureLink
 		});      
 	}
 }
